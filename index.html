@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Promise to Practice: Rethinking GenAI in LIS Through Global Perspectives | ASIS&amp;T 2026 Panel</title>
+<meta name="description" content="ASIS&T 2026 panel: From Promise to Practice: Rethinking GenAI in LIS Through Global Perspectives.">
+<meta property="og:title" content="From Promise to Practice: Rethinking GenAI in LIS Through Global Perspectives">
+<meta property="og:image" content="images/asist_2026_Bangkok.png">
+<style>
+  :root {
+    --text: #1f2933;
+    --muted: #52606d;
+    --bg: #ffffff;
+    --soft: #f5f7f6;
+    --line: #dde3e0;
+    --green: #1d5b45;
+    --blue: #1b75bb;
+    --orange: #e0612b;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--bg);
+  }
+  a { color: var(--blue); }
+  a:hover { color: var(--orange); }
+
+  /* Navigation */
+  nav.top {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--green);
+  }
+  nav.top ul {
+    list-style: none; margin: 0 auto; padding: 0 16px;
+    max-width: 960px; display: flex; flex-wrap: wrap; justify-content: center;
+  }
+  nav.top a {
+    display: block; padding: 12px 16px;
+    color: #fff; text-decoration: none; font-weight: 600; font-size: 15px;
+    letter-spacing: .02em;
+  }
+  nav.top a:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+  /* Hero: centered image followed by centered title (ASIS&T AM26 style) */
+  header.hero {
+    text-align: center;
+    padding: 40px 16px 36px;
+    border-bottom: 1px solid var(--line);
+  }
+  header.hero img {
+    width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto 28px;
+  }
+  header.hero h1 {
+    margin: 0 auto; max-width: 820px;
+    font-size: clamp(1.6rem, 3.6vw, 2.35rem); line-height: 1.25;
+    color: var(--green);
+  }
+  header.hero .sub {
+    margin: 14px auto 0; max-width: 760px;
+    font-size: 1.1rem; color: var(--muted);
+  }
+  header.hero .btn {
+    display: inline-block; margin-top: 22px; padding: 11px 22px;
+    background: var(--orange); color: #fff; text-decoration: none;
+    font-weight: 700; border-radius: 4px;
+  }
+  header.hero .btn:hover { background: var(--blue); color: #fff; }
+
+  main { max-width: 920px; margin: 0 auto; padding: 8px 16px 48px; }
+  section { padding-top: 32px; }
+  h2 {
+    font-size: 1.6rem; color: var(--green);
+    border-bottom: 3px solid var(--orange);
+    display: inline-block; padding-bottom: 4px; margin: 0 0 16px;
+  }
+  h3 { font-size: 1.2rem; margin: 28px 0 8px; color: var(--text); }
+
+  .keywords { color: var(--muted); font-size: .95rem; }
+  .keywords strong { color: var(--text); }
+
+  /* Program table */
+  .program-date { font-weight: 700; margin: 0 0 12px; }
+  table.program { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  table.program td {
+    border-top: 1px solid var(--line); padding: 14px 12px; vertical-align: top;
+  }
+  table.program tr:last-child td { border-bottom: 1px solid var(--line); }
+  table.program td.time {
+    width: 150px; font-weight: 700; white-space: nowrap; color: var(--green);
+  }
+  table.program td strong { display: block; }
+  table.program .dur { display: block; font-weight: 400; font-size: .85rem; color: var(--muted); }
+  table.program tr.aud td { background: var(--soft); }
+
+  .theme {
+    border-left: 4px solid var(--blue);
+    background: var(--soft);
+    padding: 14px 18px; margin: 18px 0;
+  }
+  .theme h3 { margin-top: 0; }
+  .theme p { margin: 8px 0; }
+  .q { font-style: italic; }
+  .label { font-weight: 700; font-style: normal; }
+
+  /* Panelists */
+  /* Row 1: three people (span 4 of 12); row 2: four people (span 3 of 12) */
+  .people {
+    display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 32px 20px; margin-top: 8px; align-items: start;
+  }
+  .person { text-align: center; grid-column: span 3; }
+  .person:nth-child(-n+3) { grid-column: span 4; }
+  @media (max-width: 560px) {
+    .person, .person:nth-child(-n+3) { grid-column: span 6; }
+  }
+  @media (max-width: 420px) {
+    .person, .person:nth-child(-n+3) { grid-column: span 12; }
+  }
+  .person img {
+    width: 150px; max-width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover;
+    border: 4px solid #fff; box-shadow: 0 0 0 2px var(--line);
+  }
+  .person .photo { position: relative; display: inline-block; max-width: 100%; }
+  .person .photo img { display: block; }
+  .person .role {
+    position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
+    white-space: nowrap; padding: 3px 12px; border-radius: 999px;
+    background: var(--orange); color: #fff; font-size: .75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em;
+  }
+  .person .name { margin-top: 18px !important; }
+  .person .name { font-weight: 700; font-size: 1.1rem; margin-top: 2px; }
+  .person .aff { color: var(--muted); font-size: .95rem; }
+  .person details { text-align: left; margin-top: 10px; font-size: .95rem; }
+  .person summary {
+    cursor: pointer; text-align: center; color: var(--blue); font-weight: 600;
+    list-style: none;
+  }
+  .person summary::-webkit-details-marker { display: none; }
+  .person summary::after { content: " ▾"; }
+  .person details[open] summary::after { content: " ▴"; }
+
+  .refs p { padding-left: 2em; text-indent: -2em; font-size: .93rem; margin: 0 0 10px; overflow-wrap: anywhere; }
+  .note { font-size: .93rem; color: var(--muted); }
+
+  footer {
+    text-align: center; padding: 24px 16px; font-size: .9rem;
+    color: var(--muted); border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    table.program td.time { width: auto; white-space: normal; }
+    table.program, table.program tbody, table.program tr, table.program td { display: block; }
+    table.program td.time { border-bottom: none; padding-bottom: 0; }
+    table.program td + td { border-top: none; padding-top: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Sections">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#panelists">Panelists</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <img src="images/asist_2026_Bangkok.png" alt="ASIS&amp;T 2026 Annual Meeting, Bangkok, November 6–10; Virtual Meeting December 2–4">
+  <h1>From Promise to Practice: Rethinking GenAI in LIS Through Global Perspectives</h1>
+  <p class="sub">A panel at <a href="https://www.conftool.org/asist2026/index.php?page=browseSessions&amp;form_date=2026-12-04&amp;form_session=963&amp;mode=table&amp;presentations=show">ASIS&amp;T 2026</a> &middot; Virtual Meeting (SCOOCS Platform)<br><strong>Friday, December 4, 2026 &middot; 4:30–6:00 pm Bangkok time (UTC+7)</strong></p>
+  <a class="btn" href="https://www.conftool.org/asist2026/index.php?page=browseSessions&amp;form_date=2026-12-04&amp;form_session=963&amp;mode=table&amp;presentations=show">View session in the conference program</a>
+</header>
+
+<main>
+
+<!-- ============ INTRODUCTION ============ -->
+<section id="introduction">
+  <h2>Introduction</h2>
+
+  <p>Generative AI (GenAI) is reshaping library and information science (LIS), from discovery systems and user services in galleries, libraries, archives, and museums (Nehra &amp; Bansode, 2024) to AI literacy education and search interfaces (Jenkins, 2026; Porter, 2026; Momeni &amp; Hoeber, 2026). Yet adoption does not look the same everywhere: how GenAI is understood, used, and evaluated depends on local infrastructure, institutional priorities, professional norms, language environments, and access to resources. Three challenges stand out. First, the data behind these systems is uneven: non-English and regional scholarship is underrepresented, and models can favor dominant cultures while flattening others (Céspedes et al., 2025; Zheng et al., 2025; Lu et al., 2025). Second, readiness varies: librarians and LIS students differ widely in their AI skills and their grasp of ethical risks, especially in developing countries (Hlatshwako &amp; Tsabedze, 2024; Hossain et al., 2026). Third, labor is at stake: GenAI can ease backlogs in cataloging, metadata, and archival description (Hollow et al., 2025), but it may also add pressure to cut LIS positions. How these issues play out across regions, languages, and institutions remains an open question.</p>
+
+  <p>This panel responds by convening scholars and practitioners from diverse cultural, linguistic, and institutional backgrounds to examine how GenAI is being understood, adopted, and critiqued across different LIS contexts. Organized around three connected dimensions—patterns of adoption, points of contextual misfit, and the limits of delegation—the panel seeks to surface both shared concerns and context-specific dynamics through cross-cultural dialogue. Attendees will leave with:</p>
+  <ol>
+    <li>a comparative view of how GenAI adoption differs across regions and institutional settings;</li>
+    <li>a clearer sense of where current GenAI tools fit poorly across languages and local contexts; and</li>
+    <li>a more grounded understanding of the limits, tensions, and human judgments that remain central to GenAI use in LIS.</li>
+  </ol>
+
+  <p class="keywords"><strong>Keywords:</strong> Large Language Models, Generative Artificial Intelligence, Scholarly Communication, Library Practice, Equity of AI, Cultural Differences, AI Literacy</p>
+</section>
+
+<!-- ============ PROGRAM ============ -->
+<section id="program">
+  <h2>Program</h2>
+
+  <p>This 90-minute session is organized as a moderated comparative conversation. After brief introductions, the moderators will guide three thematic discussion segments (60 minutes in total), each followed by a 10-minute audience exchange and live poll (30 minutes in total). The session closes with open discussion and synthesis. The format is designed to encourage comparison, crosstalk, and audience participation rather than a sequence of stand-alone statements.</p>
+
+  <p class="program-date">Friday, December 4, 2026 &middot; All times in Bangkok time (UTC+7) &middot; ASIS&amp;T 2026 Virtual Meeting</p>
+  <table class="program">
+    <tbody>
+      <tr>
+        <td class="time">4:30–4:50 pm<span class="dur">20 min</span></td>
+        <td><strong>Welcome &amp; Theme 1: Uneven adoption and meaningful change</strong>Moderators introduce the panel; panelists discuss where GenAI is actually changing LIS work.</td>
+      </tr>
+      <tr class="aud">
+        <td class="time">4:50–5:00 pm<span class="dur">10 min</span></td>
+        <td><strong>Audience exchange &amp; live poll I</strong>What most strongly shapes whether GenAI is meaningfully adopted in your context?</td>
+      </tr>
+      <tr>
+        <td class="time">5:00–5:20 pm<span class="dur">20 min</span></td>
+        <td><strong>Theme 2: Contextual misfit in GenAI tools</strong>Panelists discuss where current GenAI tools fail to align with local languages, cultures, and infrastructures.</td>
+      </tr>
+      <tr class="aud">
+        <td class="time">5:20–5:30 pm<span class="dur">10 min</span></td>
+        <td><strong>Audience exchange &amp; live poll II</strong>Where do current GenAI tools fit most poorly in your own context?</td>
+      </tr>
+      <tr>
+        <td class="time">5:30–5:50 pm<span class="dur">20 min</span></td>
+        <td><strong>Theme 3: Limits of delegation and human judgment</strong>Panelists discuss what should remain under human judgment, even when automation appears efficient.</td>
+      </tr>
+      <tr class="aud">
+        <td class="time">5:50–6:00 pm<span class="dur">10 min</span></td>
+        <td><strong>Open Q&amp;A, live poll III &amp; closing synthesis</strong>Which area most needs to remain under human judgment, even when GenAI tools are available?</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="note">Poll results remain visible on screen during each discussion so that panelists and audience members can react to emerging patterns in real time.</p>
+
+  <div class="theme">
+    <h3>Theme 1: Uneven adoption and meaningful change</h3>
+    <p>This discussion will examine where GenAI is actually changing work in LIS and where its impact remains more rhetorical than practical. Panelists will reflect on whether GenAI has meaningfully altered research workflows, teaching practices, user services, scholarly communication, or institutional strategy in their own settings, and where claims of transformation outpace everyday realities. The discussion will focus not only on uptake, but also on the conditions that shape it, including access to tools, technical infrastructure, institutional priorities, administrative support, professional expectations, and local attitudes toward experimentation.</p>
+    <p class="q"><span class="label">Guiding question:</span> In your regional or institutional context, where has GenAI been most meaningfully adopted in research, teaching, or professional practice, and what kinds of changes has that adoption produced?</p>
+    <p class="q"><span class="label">Follow-up:</span> What conditions in your setting have most enabled or constrained that adoption?</p>
+  </div>
+
+  <div class="theme">
+    <h3>Theme 2: Contextual misfit in GenAI tools</h3>
+    <p>This discussion will focus on where current GenAI tools do not apply well across contexts. Although many systems are promoted as broadly useful, their design assumptions often reflect dominant language environments, cultural norms, information infrastructures, and workflow models that do not hold everywhere. Panelists will examine the kinds of errors, omissions, flattening, or misalignment that appear in their own contexts, whether in multilingual settings, regionally specific information environments, culturally grounded professional practices, or institutions with different levels of technological support.</p>
+    <p class="q"><span class="label">Guiding question:</span> What do current GenAI tools get wrong, miss, or flatten in your context that people outside your region or institution may not readily notice?</p>
+    <p class="q"><span class="label">Follow-up:</span> What factors most shape these failures in your context, and how do language, culture, infrastructure, and professional norms interact in producing them?</p>
+  </div>
+
+  <div class="theme">
+    <h3>Theme 3: Limits of delegation and human judgment</h3>
+    <p>The final discussion will address the boundaries of appropriate delegation. As GenAI tools become more capable and more embedded in everyday work, LIS researchers, educators, and practitioners face growing pressure to decide what can be responsibly offloaded and what should remain under human judgment. These may include evaluation, mediation, ethical judgment, care work, culturally situated interpretation, or forms of professional responsibility that cannot be reduced to speed or scale.</p>
+    <p class="q"><span class="label">Guiding question:</span> In research, teaching, or professional practice, what is one area that should not be delegated to GenAI in your context, even if the tool appears efficient?</p>
+    <p class="q"><span class="label">Follow-up:</span> What is at risk when that boundary is crossed, and how should LIS professionals decide where that boundary belongs?</p>
+  </div>
+</section>
+
+<!-- ============ PANELISTS ============ -->
+<section id="panelists">
+  <h2>Panelists</h2>
+
+  <div class="people">
+
+    <div class="person">
+      <div class="photo"><img src="images/yuan-li.jpg" alt="Yuan Li"><div class="role">Moderator</div></div>
+      <div class="name">Yuan Li</div>
+      <div class="aff">University of Alabama, USA</div>
+      <details>
+        <summary>Bio</summary>
+        <p>Dr. Yuan Li is an Assistant Professor in the School of Library and Information Science at the University of Alabama. Her research examines the intersection of human-computer and human-AI interaction, interactive information retrieval, and social media. She studies how people engage with information, information systems, and online platforms, including search engines, AI tools like ChatGPT, and social media, while working on complex, creative, or learning-oriented tasks. Dr. Li's work has been published in JASIST, SIGIR, CHIIR, ASIS&amp;T, and the iConference. Her recent projects also include mixed-methods research on public discourse about generative AI and GLAM institutions using large-scale social media data. In this panel, she will help frame the discussion across the three themes and connect them to current LIS debates on GenAI use, platform contexts, and human judgment.</p>
+      </details>
+    </div>
+
+    <div class="person">
+      <div class="photo"><img src="images/jiaxin-an.jpg" alt="Jiaxin An"><div class="role">Co-Moderator</div></div>
+      <div class="name">Jiaxin An</div>
+      <div class="aff">University of Texas at Austin, USA</div>
+      <details>
+        <summary>Bio</summary>
+        <p>Jiaxin An is a PhD Candidate in the School of Information at the University of Texas at Austin. Her research focuses on agentic AI, human-AI interaction, and information behavior, with a particular emphasis on supporting vulnerable populations, including older adults and parents of children with ASD. Her current work examines the ethical design of AI agents, especially how to preserve the autonomy of aging populations in their interaction with agents for health purposes. Her work has been published at venues such as Journal of Pain, JASIST, ASIS&amp;T, and CHIIR. In this panel, she will help draw out questions of ethical design, autonomy, and responsible delegation across contexts.</p>
+      </details>
+    </div>
+
+    <div class="person">
+      <div class="photo"><img src="images/orland-hoeber.jpg" alt="Orland Hoeber"><div class="role">Panelist</div></div>
+      <div class="name">Orland Hoeber</div>
+      <div class="aff">University of Regina, Canada</div>
+      <details>
+        <summary>Bio</summary>
+        <p>Dr. Orland Hoeber is a Professor in the Department of Computer Science at the University of Regina, Canada. His research focuses on interactive information retrieval, information visualization, and information behavior, with a particular emphasis on understanding how people seek and use information across complex search tasks. He is an advocate for information and AI literacy, data sovereignty, and maintaining human agency in the age of generative AI. He has published extensively in venues such as JASIST, IP&amp;M, and CHIIR. His work on the human-centered design of search interfaces bridges computer science and library and information science. His cross-disciplinary perspective on how users interact with information systems makes him well-suited to explore how cultural contexts shape the study and application of AI in the LIS field.</p>
+      </details>
+    </div>
+
+    <div class="person">
+      <div class="photo"><img src="images/le-yang.jpg" alt="Le Yang"><div class="role">Panelist</div></div>
+      <div class="name">Le Yang</div>
+      <div class="aff">University of Oregon, USA</div>
+      <details>
+        <summary>Bio</summary>
+        <p>Dr. Le Yang is a Senior Librarian and Associate Vice Provost &amp; University Librarian for Collections, Discovery, and Digital Strategy at the University of Oregon Libraries. He holds a Ph.D. in Library Science from Wuhan University and an MLIS from the University of Rhode Island, with research interests in digital libraries, open repositories, and AI/ML applications in large-scale digital collections. His cross-cultural academic background, bridging Chinese and North American LIS traditions, offers a valuable perspective on how cultural contexts shape AI research and practice in the field. In this panel, he will contribute a practice-based cross-cultural view of how GenAI fits, or fails to fit, library infrastructure, discovery, and digital collections work.</p>
+      </details>
+    </div>
+
+    <div class="person">
+      <div class="photo"><img src="images/chang-liu.jpg" alt="Chang Liu"><div class="role">Panelist</div></div>
+      <div class="name">Chang Liu</div>
+      <div class="aff">Peking University, China</div>
+      <details>
+        <summary>Bio</summary>
+        <p>Dr. Chang Liu is an Associate Professor in the Department of Information Management at Peking University. Her research spans information behavior and cognition, interactive information retrieval and interface design, search-as-learning, and digital literacy. In recent years, her work has focused on analyzing information behavior in scientific research and innovation activities and on designing intelligent systems. Specifically, her research has explored the intersection of AI and information practices, including AI-generated personas using large language models and user prompting behaviors in generative AI contexts, especially for complex search tasks. In this panel, she will contribute perspectives on search, prompting, and intelligent system design across research and learning settings.</p>
+      </details>
+    </div>
+
+    <div class="person">
+      <div class="photo"><img src="images/maayan-zhitomirsky-geffet.jpg" alt="Maayan Zhitomirsky-Geffet"><div class="role">Panelist</div></div>
+      <div class="name">Maayan Zhitomirsky-Geffet</div>
+      <div class="aff">Bar-Ilan University, Israel</div>
+      <details>
+        <summary>Bio</summary>
+        <p>Dr. Maayan Zhitomirsky-Geffet is a Full Professor in the Department of Information Science and Applied Artificial Intelligence at Bar-Ilan University. Her research develops multi-viewpoint knowledge organization models and data-driven methodologies to analyze bias, plurality, and representation in large-scale textual and cultural datasets across languages and domains. She focuses on identifying cultural, political, and linguistic biases in AI and information systems, including digital heritage collections and social media, and on designing frameworks that move beyond English-centric and single-perspective models toward more inclusive, context-aware AI. In this panel, she will contribute perspectives on multilingual representation, bias, and plurality, especially where GenAI systems flatten cultural and political differences.</p>
+      </details>
+    </div>
+
+    <div class="person">
+      <div class="photo"><img src="images/jia-tina-du.jpg" alt="Jia Tina Du"><div class="role">Panelist</div></div>
+      <div class="name">Jia Tina Du</div>
+      <div class="aff">Charles Sturt University, Australia</div>
+      <details>
+        <summary>Bio</summary>
+        <p>Dr. Du is the Head of the School of Information and Communication Studies and a full Professor of Information Sciences at Charles Sturt University, New South Wales, Australia. Her research focuses on human information behavior, community engagement, library studies, and the social impact of emerging technologies, supported by over $2 million in Australian Research Council (ARC) and industry funding, with 140+ publications in top journals including JASIST, ARIST, IP&amp;M, and JDOC. She has received numerous awards, including the ARC DECRA and the ASIS&amp;T SIG USE Outstanding Contributions to Information Behavior Research Award. She has held professional leadership roles, including Chair of the Australian Library and Information Association Research Advisory Committee, Director-at-Large on the Board of the Association for Information Science and Technology, and currently serves as Treasurer of the iSchools organization and Interim Editor-in-Chief of ARIST. She is the lead chief investigator of the ARC-funded Discovery Project <em>Australian Public Libraries and Social Capital: An Exploratory Study</em> (DP250103150). In her presentation, she will examine the key challenges and opportunities that AI and digital transformation present for libraries, including their implications for equity, trust, and professional practice.</p>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ REFERENCES ============ -->
+<section id="references" class="refs">
+  <h2>References</h2>
+  <p>Cao, Y., Zhou, L., Lee, S., Cabello, L., Chen, M., &amp; Hershcovich, D. (2023). Assessing cross-cultural alignment between ChatGPT and human societies: An empirical study. <em>Proceedings of the First Workshop on Cross-Cultural Considerations in NLP (C3NLP)</em> (pp. 53–67). Association for Computational Linguistics. <a href="https://doi.org/10.18653/v1/2023.c3nlp-1.7">https://doi.org/10.18653/v1/2023.c3nlp-1.7</a></p>
+  <p>Céspedes, L., Kozlowski, D., Pradier, C., Sainte-Marie, M. H., Shokida, N. S., Benz, P., Poitras, C., Ninkov, A. B., Ebrahimy, S., Ayeni, P., Filali, S., Li, B., &amp; Larivière, V. (2025). Evaluating the linguistic coverage of OpenAlex: An assessment of metadata accuracy and completeness. <em>Journal of the Association for Information Science and Technology, 76</em>(6), 884–895. <a href="https://doi.org/10.1002/asi.24979">https://doi.org/10.1002/asi.24979</a></p>
+  <p>Free, D. (2026, April 24). ALA Draft Guidance of the Use of Artificial Intelligence in Libraries Comments Due May 8. <em>ACRL Insider</em>. <a href="https://acrl.ala.org/acrlinsider/ala-draft-guidance-of-the-use-of-artificial-intelligence-in-libraries-comments-due-may-8/">https://acrl.ala.org/acrlinsider/ala-draft-guidance-of-the-use-of-artificial-intelligence-in-libraries-comments-due-may-8/</a></p>
+  <p>Hlatshwako, Z., &amp; Tsabedze, V. (2024). Unlocking the future: Exploring librarian's perspectives and readiness for artificial intelligence integration in Eswatini libraries. <em>Journal of Web Librarianship, 18</em>(3), 149–168. <a href="https://doi.org/10.1080/19322909.2024.2364324">https://doi.org/10.1080/19322909.2024.2364324</a></p>
+  <p>Hollow, A. G., Cline, L., Kardar, M., Komarnytska, O., &amp; Warkentin, L. (2025). The AI-powered archivist: Harnessing generative artificial intelligence for streamlined archival description. <em>Journal of Digital Media Management</em>. <a href="https://hstalks.com/article/10077/the-ai-powered-archivist-harnessing-generative-art/">https://hstalks.com/article/10077/the-ai-powered-archivist-harnessing-generative-art/</a></p>
+  <p>Hossain, Z., Biswas, Md. S., &amp; Khan, G. (2026). AI literacy of library and information science students: A study of Bangladesh, India and Pakistan. <em>Journal of Librarianship and Information Science, 58</em>(1), 285–299. <a href="https://doi.org/10.1177/09610006241309323">https://doi.org/10.1177/09610006241309323</a></p>
+  <p>Jenkins, S. (2026). <em>Learning Excellence Library leaders for AI literacy</em>. <a href="https://www.elsevier.com/academic-and-government/library-leaders-ai-literacy-education">https://www.elsevier.com/academic-and-government/library-leaders-ai-literacy-education</a></p>
+  <p>Kim, J., Chen, H., Yang, L., &amp; Simic, J. (2024). Exploring the application of artificial intelligence and machine learning in GLAM collections. <em>Proceedings of the Association for Information Science and Technology, 61</em>(1), 782–785.</p>
+  <p>Lu, J. G., Song, L. L., &amp; Zhang, L. D. (2025). Cultural tendencies in generative AI. <em>Nature Human Behaviour, 9</em>(11), 2360–2369. <a href="https://doi.org/10.1038/s41562-025-02242-1">https://doi.org/10.1038/s41562-025-02242-1</a></p>
+  <p>Momeni, M., &amp; Hoeber, O. (2026). Does it still make sense? Organizing and summarizing resources in cross-session aggregated search. <em>Proceedings of the ACM SIGIR Conference on Human Information Interaction and Retrieval</em>, 28–39. <a href="https://doi.org/10.1145/3786304.3787873">https://doi.org/10.1145/3786304.3787873</a></p>
+  <p>Nehra, S. S., &amp; Bansode, S. Y. (2024). Exploring the prospects and perils of integrating artificial intelligence and ChatGPT in academic and research libraries (ARL): Challenges and opportunity. <em>Journal of Web Librarianship, 18</em>(3), 111–132. <a href="https://doi.org/10.1080/19322909.2024.2390413">https://doi.org/10.1080/19322909.2024.2390413</a></p>
+  <p>Porter, B. (2026, January 15). Libraries as AI literacy leaders. <em>Information Matters</em>. <a href="https://informationmatters.org/2026/01/libraries-as-ai-literacy-leaders/">https://informationmatters.org/2026/01/libraries-as-ai-literacy-leaders/</a></p>
+  <p>Seikaly, K. (2024). "ChatGPT, how do people feel about you?": Emotions, artificial intelligence, and information behavior. <em>Journal of Web Librarianship, 18</em>(3), 133–148. <a href="https://doi.org/10.1080/19322909.2024.2382689">https://doi.org/10.1080/19322909.2024.2382689</a></p>
+  <p>Zhang, Y., &amp; Fang, Z. (2025). The Tower of Babel in science communication on social media: An analysis of linguistic diversity in Twitter mentions of scientific publications. <em>Journal of the Association for Information Science and Technology, 76</em>(11), 1431–1451. <a href="https://doi.org/10.1002/asi.70002">https://doi.org/10.1002/asi.70002</a></p>
+  <p>Zheng, M., Miao, L., Bu, Y., &amp; Larivière, V. (2025). Understanding discrepancies in the coverage of OpenAlex: The case of China. <em>Journal of the Association for Information Science and Technology, 76</em>(11), 1591–1601. <a href="https://doi.org/10.1002/asi.70013">https://doi.org/10.1002/asi.70013</a></p>
+</section>
+
+</main>
+
+<footer>
+  ASIS&amp;T 2026 Annual Meeting &middot; Crossing Boundaries: Advancing Global Dialogue and Well-being through Information Research and Practice
+</footer>
+
+</body>
+</html>
